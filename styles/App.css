@@ -1,0 +1,215 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.App {
+  text-align: center;
+  font-family: 'Comfortaa', sans-serif;
+  min-height: 100%;
+  position: relative;
+}
+
+.light {
+  color: #ffffffba;
+}
+
+.dark {
+  color: #000000ba;
+}
+
+.unreleased {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 400px;
+}
+
+.About {
+  display: flex;
+  justify-content: center;
+  flex-flow: column;
+  position: absolute;
+  top: 5vw;
+  right: 5%;
+  width: 90%;
+}
+
+.hoverable {
+  position: fixed;
+  top: 1%;
+  right: 1%;
+}
+
+.About .icon {
+  width: 18%;
+  padding: 2%;
+}
+
+.About .bio {
+  font-size: 6vw;
+  display: none;
+}
+
+.About .symbols, .About .links {
+  width: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  margin: 10px;
+}
+
+.CoverImage {
+  display: none;
+}
+
+.player video {
+  position: fixed;
+  z-index: -100;
+  object-fit: cover;
+  min-width: 100% !important;
+  min-height: 100% !important;
+  transform: translateX(-50%);
+}
+
+.bottom-bar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  position: fixed;
+  bottom: 0;
+  height: 10vh;
+  width: 100%;
+  background-color: #000000;
+  opacity: 50%;
+}
+
+.TrackList {
+  display: flex;
+  flex-direction: row;
+}
+
+.TrackList .display {
+  color: #ffffff;
+  font-size: 4.5vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.TrackList .display p {
+  padding-left: 5vw;
+}
+
+.TrackList .list {
+  position: fixed;
+  bottom: 9.9vh;
+  background-color: #000000;
+  line-height: 3vh;
+  padding: 3vh 10vh 3vh 5vh;
+}
+
+.TrackList .list li {
+  margin-bottom: 3vh;
+  font-size: 4vw;
+  line-height: normal;
+}
+
+.TrackList .list li:last-child {
+  margin-bottom: 0;
+}
+
+.TrackList ul {
+  color: #ffffff;
+  opacity: 90%;
+  list-style-type: none;
+  padding-left: 3vh;
+  font-size: 4.5vw;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.Controls {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+  width: 35%;
+  padding: 15px;
+}
+
+.Controls .image {
+  height: 4vh;
+  position: relative;
+  top: 3vh;
+  right: 5%;
+  margin: 0 0.5vw;
+  padding: 10px;
+}
+
+.Controls .backNext {
+  height: 3vh;
+  top: 3.5vh;
+} 
+
+@media (min-aspect-ratio: 13/16) {
+  .About {
+    width: 50%;
+  } 
+
+  .About .bio {
+    font-size: 3vw;
+    display: inline;
+  }
+
+  .CoverImage {
+    display: inline;
+  }
+
+  .list-icon {
+    display: none;
+  }
+
+  .TrackList .display p {
+    font-size: 16px;
+  }
+
+  .TrackList .list {
+    text-align: left;
+  }
+
+  .TrackList .list ul {
+    margin: 0;
+  }
+
+  .TrackList .list li {
+    font-size: 16px;
+  }
+
+  .TrackList .list li:last-child {
+    margin-bottom: 0;
+  }
+}
+
+@media (min-aspect-ratio: 1/1) {
+  .About {
+    top: 1vw;
+    right: 1%;
+    width: 40%;
+  }
+  .About .bio {
+    font-size: 2vw;
+  }
+}

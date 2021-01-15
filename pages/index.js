@@ -1,65 +1,104 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import React, { useState, useEffect } from 'react'; // TODO: Update readme
+import { isBrowser } from 'react-device-detect';
 
-export default function Home() {
-  return (
-    <div className={styles.container}>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+import { songsArray } from "../songs-array.js";
 
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
+//import '../styles/App.module.css';
 
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
+import { About } from '../components/About.js';
+import { VideoPlayer } from '../components/VideoPlayer';
+import { TrackList } from '../components/TrackList';
+import { Controls } from '../components/Controls.js';
 
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
+export default function App() {
 
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
+  const [currentTrack, setCurrentTrack] = useState(0);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(isBrowser);
+  const [backgroundColor, setBackgroundColor] = useState(songsArray[currentTrack].backgroundColor);
 
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
+  useEffect(() => {
+    document.body.style.background = backgroundColor;
+  }, [backgroundColor])
 
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
+  useEffect(() => {
+    setBackgroundColor(songsArray[currentTrack].backgroundColor)
+  }, [currentTrack])
 
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
+  const handleSetIsLoaded = (isLoaded) => {
+    setIsLoaded(isLoaded);
+  }
+
+  const selectTrack = index => {
+    setCurrentTrack(index);
+  }
+
+  const getReleaseDate = (track) => {
+    return new Date(songsArray[track].releaseDate);
+  }
+  const isReleased = (track) => {
+    return getReleaseDate(track).getTime() < Date.now();
+  }
+
+  const play = () => {
+    setIsPlaying(true);
+  }
+
+  const pause = () => {
+    setIsPlaying(false);
+  }
+
+  const next = () => {
+    if ( currentTrack < songsArray.length - 1 ) {
+      setCurrentTrack( currentTrack + 1 )
+    } else {
+      setCurrentTrack(0)
+    }
+  }
+
+  const back = () => {
+    if ( currentTrack > 0 ) {
+      setCurrentTrack( currentTrack - 1 )
+    } else {
+      setCurrentTrack(songsArray.length - 1)
+    }
+  }
+// TODO: put my spotify URI
+  return ( 
+    <div className="App" >
+          <About 
+            iconColor={ songsArray[currentTrack].iconColor }
+          />
+          { isReleased(currentTrack) ? 
+            <VideoPlayer 
+              source={ songsArray[currentTrack].fileName } 
+              next={() => next()}
+              isPlaying={isPlaying}
+              setIsLoaded={handleSetIsLoaded}
+            />
+          :
+            <h2 className={`unreleased ${songsArray[currentTrack].iconColor}`}>
+              this song will be released {
+                getReleaseDate(currentTrack).toUTCString().slice(0, 16).toLowerCase()
+              }
+            </h2>
+          }
+          <div className="bottom-bar">
+            <TrackList 
+              songsArray={ songsArray }
+              selectTrack={ selectTrack }
+              currentTrack={ currentTrack }
+            />
+            { isLoaded &&
+              <Controls 
+                isPlaying={isPlaying}
+                play={play}
+                pause={pause}
+                next={next}
+                back={back}
+              />
+            }
+          </div>
     </div>
-  )
+  );
 }

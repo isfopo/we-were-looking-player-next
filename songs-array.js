@@ -68,7 +68,7 @@ export const songsArray = [
         album: "we-were-looking",
         fileName : "angel-cut-and-cold",
         backgroundColor : "#17253D",
-        releaseDate : "June 16th, 2021 00:00:00",
+        releaseDate : "June 16, 2021 00:00:00",
         iconColor : "light"
     },
     {
@@ -76,7 +76,7 @@ export const songsArray = [
         album: "the-solo-ep",
         fileName : "enter-city-limits",
         backgroundColor : "#ae1667",
-        releaseDate : "January 15th, 2021 00:00:00",
+        releaseDate : "January 15, 2021 00:00:00",
         iconColor : "dark"
     },
     {
@@ -84,7 +84,7 @@ export const songsArray = [
         album: "the-solo-ep",
         fileName : "a-brief-history",
         backgroundColor : "#ae1667",
-        releaseDate : "January 15th, 2021 00:00:00",
+        releaseDate : "January 15, 2021 00:00:00",
         iconColor : "dark"
     },
     {
@@ -92,7 +92,7 @@ export const songsArray = [
         album: "the-solo-ep",
         fileName : "and-the-spirit-changes",
         backgroundColor : "#ae1667",
-        releaseDate : "January 15th, 2021 00:00:00",
+        releaseDate : "January 15, 2021 00:00:00",
         iconColor : "dark"
     },
 
@@ -101,7 +101,7 @@ export const songsArray = [
         album: "the-solo-ep",
         fileName : "war-and-peace-in-the-land-of-machines",
         backgroundColor : "#ae1667",
-        releaseDate : "January 15th, 2021 00:00:00",
+        releaseDate : "January 15, 2021 00:00:00",
         iconColor : "dark"
     },
 ]

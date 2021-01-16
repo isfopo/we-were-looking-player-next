@@ -3,8 +3,7 @@ import { isBrowser } from 'react-device-detect';
 
 import { songsArray } from "../songs-array.js";
 
-//import '../styles/App.module.css';
-
+import { AlbumSelector } from '../components/AlbumSelector';
 import { About } from '../components/About.js';
 import { VideoPlayer } from '../components/VideoPlayer';
 import { TrackList } from '../components/TrackList';
@@ -14,6 +13,7 @@ export default function App() {
 
   const [currentTrack, setCurrentTrack] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [currentAlbum, setCurrentAlbum] = useState("we-were-looking")
   const [isPlaying, setIsPlaying] = useState(isBrowser);
   const [backgroundColor, setBackgroundColor] = useState(songsArray[currentTrack].backgroundColor);
 
@@ -29,8 +29,19 @@ export default function App() {
     setIsLoaded(isLoaded);
   }
 
-  const selectTrack = index => {
-    setCurrentTrack(index);
+  const selectAlbum = (album) => {
+    // play first track from album
+    for ( let i = 0; i < songsArray.length; i++) {
+      if (songsArray[i].album === album) {
+        selectTrack(i);
+        break;
+      }
+    }
+    setCurrentAlbum(album)
+  }
+
+  const selectTrack = track => {
+    setCurrentTrack(track);
   }
 
   const getReleaseDate = (track) => {
@@ -63,42 +74,47 @@ export default function App() {
       setCurrentTrack(songsArray.length - 1)
     }
   }
-// TODO: put my spotify URI
+
   return ( 
     <div className="App" >
-          <About 
-            iconColor={ songsArray[currentTrack].iconColor }
-          />
-          { isReleased(currentTrack) ? 
-            <VideoPlayer 
-              source={ songsArray[currentTrack].fileName } 
-              next={() => next()}
-              isPlaying={isPlaying}
-              setIsLoaded={handleSetIsLoaded}
-            />
-          :
-            <h2 className={`unreleased ${songsArray[currentTrack].iconColor}`}>
-              this song will be released {
-                getReleaseDate(currentTrack).toUTCString().slice(0, 16).toLowerCase()
-              }
-            </h2>
+      <AlbumSelector 
+        selectAlbum={ selectAlbum }
+        iconColor={ songsArray[currentTrack].iconColor }
+      />
+      <About 
+        iconColor={ songsArray[currentTrack].iconColor }
+      />
+      { isReleased(currentTrack) ? 
+        <VideoPlayer 
+          source={ songsArray[currentTrack].fileName } 
+          next={() => next()}
+          isPlaying={isPlaying}
+          setIsLoaded={handleSetIsLoaded}
+        />
+      :
+        <h2 className={`unreleased ${songsArray[currentTrack].iconColor}`}>
+          this song will be released {
+            getReleaseDate(currentTrack).toUTCString().slice(0, 16).toLowerCase()
           }
-          <div className="bottom-bar">
-            <TrackList 
-              songsArray={ songsArray }
-              selectTrack={ selectTrack }
-              currentTrack={ currentTrack }
-            />
-            { isLoaded &&
-              <Controls 
-                isPlaying={isPlaying}
-                play={play}
-                pause={pause}
-                next={next}
-                back={back}
-              />
-            }
-          </div>
+        </h2>
+      }
+      <div className="bottom-bar">
+        <TrackList 
+          songsArray={ songsArray }
+          selectTrack={ selectTrack }
+          currentAlbum={ currentAlbum }
+          currentTrack={ currentTrack }
+        />
+        { isLoaded &&
+          <Controls 
+            isPlaying={ isPlaying }
+            play={ play }
+            pause={ pause }
+            next={ next }
+            back={ back }
+          />
+        }
+      </div>
     </div>
   );
 }

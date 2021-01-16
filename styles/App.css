@@ -34,7 +34,40 @@ code {
   height: 400px;
 }
 
-.About {
+.selector-hoverable {
+  position: fixed;
+  padding: 2rem;
+  top: 1%;
+  left: 1%;
+}
+
+.selector-list {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #000000;
+  opacity: 50%;
+}
+
+.selector-list ul {
+  color: #ffffff;
+  opacity: 90%;
+  list-style-type: none;
+  padding-left: 3vh;
+  font-size: 4.5vw;
+
+  display: flex;
+  flex-direction: column;
+  justify-content:flex-start;
+  align-items: center;
+}
+
+.selector-list li {
+  margin: 3vh;
+  line-height: normal;
+}
+
+.About, .AlbumSelector {
   display: flex;
   justify-content: center;
   flex-flow: column;
@@ -178,8 +211,8 @@ code {
     display: inline;
   }
 
-  .list-icon {
-    display: none;
+  .selector-list ul {
+    font-size: 2vw;
   }
 
   .TrackList .display p {

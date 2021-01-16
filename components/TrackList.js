@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
-import Image from 'next/image'
 
-export const TrackList = props => {
+export const TrackList = ({ songsArray, selectTrack, currentAlbum, currentTrack }) => {
 
     const [isShowing, setIsShowing] = useState(false)
 
@@ -29,12 +28,19 @@ export const TrackList = props => {
                 <div className="list">
                     <ul 
                         onMouseLeave={() => { hide() }}>
-                        {props.songsArray.map( ( song, index ) => <li key={index} onClick={() => {props.selectTrack(index)}}>{song.name}</li>)}
+                        {
+                            songsArray.map( ( track, index ) => {
+                                if ( track.album === currentAlbum ) {
+                                    return <li key={index} onClick={() => {selectTrack(index)}}>{track.name}</li>
+                                }
+                            }
+                            )
+                        }
                     </ul>
                 </div>
             }
                 <div className="display" style={{visibility: !isShowing ? "visible" : "hidden"}} >
-                    <p onTouchStart={() => { show() }}>{ props.songsArray[props.currentTrack].name }</p>
+                    <p onTouchStart={() => { show() }}>{ songsArray[currentTrack].name }</p>
                 </div> 
             
         </div>

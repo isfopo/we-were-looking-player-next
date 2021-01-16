@@ -1,9 +1,7 @@
 import React, { useState } from 'react'
 import Image from 'next/image'
 
-export const About = props => {
-
-    const { iconColor } = props;
+export const About = ({iconColor}) => {
 
     const [isShowing, setIsShowing] = useState(false)
 
@@ -67,7 +65,7 @@ export const About = props => {
                             width={100} height={100}
                         />
                     </a>
-                    <a href="https://open.spotify.com/artist/5cj0lLjcoR7YOSnhnX0Po5" target="_blank" rel="noopener noreferrer">
+                    <a href="https://open.spotify.com/artist/7CbCnenFpsEyCKXZCOTJBy" target="_blank" rel="noopener noreferrer">
                         <Image 
                             className="icon"
                             src={`/icons/${iconColor}/links/spotify.png` }

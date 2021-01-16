@@ -79,7 +79,7 @@ export const songsArray = [
         fileName : "enter-city-limits",
         backgroundColor : "#ae1667",
         releaseDate : dev ? 0 : "January 15th, 2021 00:00:00",
-        iconColor : "light"
+        iconColor : "dark"
     },
     {
         name : "A Brief History",
@@ -87,7 +87,7 @@ export const songsArray = [
         fileName : "a-brief-history",
         backgroundColor : "#ae1667",
         releaseDate : dev ? 0 : "January 15th, 2021 00:00:00",
-        iconColor : "light"
+        iconColor : "dark"
     },
     {
         name : "And the Spirit Changes",
@@ -95,7 +95,7 @@ export const songsArray = [
         fileName : "and-the-spirit-changes",
         backgroundColor : "#ae1667",
         releaseDate : dev ? 0 : "January 15th, 2021 00:00:00",
-        iconColor : "light"
+        iconColor : "dark"
     },
 
     {
@@ -104,6 +104,6 @@ export const songsArray = [
         fileName : "war-and-peace-in-the-land-of-machines",
         backgroundColor : "#ae1667",
         releaseDate : dev ? 0 : "January 15th, 2021 00:00:00",
-        iconColor : "light"
+        iconColor : "dark"
     },
 ]

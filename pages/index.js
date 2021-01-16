@@ -11,20 +11,15 @@ import { Controls } from '../components/Controls.js';
 
 export default function App() {
 
-  const [currentAlbum, setCurrentAlbum] = useState("we-were-looking")
+  const [currentAlbum, setCurrentAlbum] = useState("we-were-looking");
   const [currentTrack, setCurrentTrack] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
   const [isPlaying, setIsPlaying] = useState(isBrowser);
   const [selectorOpen, setSelectorOpen] = useState(false);
   const [aboutOpen, setAboutOpen] = useState(false);
-  const [backgroundColor, setBackgroundColor] = useState(songsArray[currentTrack].backgroundColor);
 
   useEffect(() => {
-    document.body.style.background = backgroundColor;
-  }, [backgroundColor])
-
-  useEffect(() => {
-    setBackgroundColor(songsArray[currentTrack].backgroundColor)
+    document.body.style.background = songsArray[currentTrack].backgroundColor;
   }, [currentTrack])
 
   const handleSetIsLoaded = (isLoaded) => {
@@ -32,10 +27,14 @@ export default function App() {
   }
 
   const handleSetAboutOpen = isOpen => {
-    setAboutOpen(isOpen);
+    if ( window.innerWidth < 720 ) {
+      setAboutOpen(isOpen);
+    }
   }
   const handleSetSelectorOpen = isOpen => {
-    setSelectorOpen(isOpen);
+    if ( window.innerWidth < 720 ) {
+      setSelectorOpen(isOpen);
+    }
   }
 
   const selectAlbum = (album) => {
@@ -87,7 +86,7 @@ export default function App() {
     <div className="App" >
       { !aboutOpen &&
         <AlbumSelector 
-          setSelectorOpen={handleSetSelectorOpen}
+          setSelectorOpen={ handleSetSelectorOpen }
           selectAlbum={ selectAlbum }
           iconColor={ songsArray[currentTrack].iconColor }
         />

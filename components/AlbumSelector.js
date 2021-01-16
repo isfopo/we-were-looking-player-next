@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Image from 'next/image'
 
-export const AlbumSelector = ({ selectAlbum, iconColor }) => {
+export const AlbumSelector = ({ setSelectorOpen, selectAlbum, iconColor }) => {
 
   const [isShowing, setIsShowing] = useState(false)
 
@@ -14,7 +14,7 @@ export const AlbumSelector = ({ selectAlbum, iconColor }) => {
   }
 
   return (
-    <div className="AlbumSelector" onMouseLeave={() => {hide()}}>
+    <div className="AlbumSelector" onMouseEnter={() => setSelectorOpen(true)} onMouseLeave={() => setSelectorOpen(false)}>
       { !isShowing ? 
         <div className="selector-hoverable">
             <Image onMouseEnter={() => {show()}}
@@ -24,7 +24,7 @@ export const AlbumSelector = ({ selectAlbum, iconColor }) => {
             /> 
         </div>  
       :
-        <div className="selector-list">
+        <div className="selector-list" onMouseLeave={() => {hide()}}>
           <ul>
             <li onClick={() => {selectAlbum("the-solo-ep")}}>the solo ep</li>
             <li onClick={() => {selectAlbum("we-were-looking")}}>We Were Looking For Transcendence in the Eyes of Our Lovers</li>

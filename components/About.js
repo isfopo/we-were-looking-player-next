@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Image from 'next/image'
 
-export const About = ({iconColor}) => {
+export const About = ({ setAboutOpen, iconColor}) => {
 
     const [isShowing, setIsShowing] = useState(false)
 
@@ -14,9 +14,9 @@ export const About = ({iconColor}) => {
     }
 
     return (
-        <div onMouseLeave={() => {hide()}}>
+        <div onMouseEnter={() => setAboutOpen(true)} onMouseLeave={() => setAboutOpen(false)}>
         { isShowing ?
-            <div className="About">
+            <div className="About" onMouseLeave={() => {hide()}}>
                 <div className="symbols">
                     <Image 
                         className="icon"
@@ -44,18 +44,19 @@ export const About = ({iconColor}) => {
                         width={100} height={100}
                     />
                 </div>
-            <h1 
-                className={`bio ${iconColor}`}
-            >
-                sound // shape // place // memory
-            </h1>
-            <Image 
-                className="artistImage"
-                src="/images/artistImage.png" 
-                alt="Isaac Poole"
-                width={500} height={500}
-                objectFit="contain"
-            />
+                <h1 
+                    className={`bio ${iconColor}`}
+                >
+                    sound // shape // place // memory
+                </h1>
+                <div className="artistImage">
+                    <Image
+                        src="/images/artistImage.png" 
+                        alt="Isaac Poole"
+                        width={500} height={500}
+                        objectFit="contain"
+                    />
+                </div>
                 <div className="links">
                     <a href="mailto isaacpoolemusic@gmail.com">
                         <Image

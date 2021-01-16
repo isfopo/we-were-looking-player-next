@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'; // TODO: Update readme
-import { isBrowser } from 'react-device-detect';
+import { isBrowser, isMobile } from 'react-device-detect';
 
 import { songsArray } from "../songs-array.js";
 
@@ -11,10 +11,12 @@ import { Controls } from '../components/Controls.js';
 
 export default function App() {
 
+  const [currentAlbum, setCurrentAlbum] = useState("we-were-looking")
   const [currentTrack, setCurrentTrack] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [currentAlbum, setCurrentAlbum] = useState("we-were-looking")
   const [isPlaying, setIsPlaying] = useState(isBrowser);
+  const [selectorOpen, setSelectorOpen] = useState(false);
+  const [aboutOpen, setAboutOpen] = useState(false);
   const [backgroundColor, setBackgroundColor] = useState(songsArray[currentTrack].backgroundColor);
 
   useEffect(() => {
@@ -29,8 +31,14 @@ export default function App() {
     setIsLoaded(isLoaded);
   }
 
+  const handleSetAboutOpen = isOpen => {
+    setAboutOpen(isOpen);
+  }
+  const handleSetSelectorOpen = isOpen => {
+    setSelectorOpen(isOpen);
+  }
+
   const selectAlbum = (album) => {
-    // play first track from album
     for ( let i = 0; i < songsArray.length; i++) {
       if (songsArray[i].album === album) {
         selectTrack(i);
@@ -77,13 +85,19 @@ export default function App() {
 
   return ( 
     <div className="App" >
-      <AlbumSelector 
-        selectAlbum={ selectAlbum }
-        iconColor={ songsArray[currentTrack].iconColor }
-      />
-      <About 
-        iconColor={ songsArray[currentTrack].iconColor }
-      />
+      { !aboutOpen &&
+        <AlbumSelector 
+          setSelectorOpen={handleSetSelectorOpen}
+          selectAlbum={ selectAlbum }
+          iconColor={ songsArray[currentTrack].iconColor }
+        />
+      }
+      { !selectorOpen &&
+        <About
+          setAboutOpen={handleSetAboutOpen}
+          iconColor={ songsArray[currentTrack].iconColor }
+        />
+      }
       { isReleased(currentTrack) ? 
         <VideoPlayer 
           source={ songsArray[currentTrack].fileName } 

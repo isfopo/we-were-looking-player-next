@@ -46,7 +46,7 @@ code {
   top: 0;
   left: 0;
   background-color: #000000;
-  opacity: 50%;
+  opacity: 70%;
 }
 
 .selector-list ul {
@@ -123,7 +123,7 @@ code {
   height: 10vh;
   width: 100%;
   background-color: #000000;
-  opacity: 50%;
+  opacity: 70%;
 }
 
 .TrackList {
@@ -146,10 +146,11 @@ code {
 
 .TrackList .list {
   position: fixed;
-  bottom: 9.9vh;
+  bottom: 0;
   background-color: #000000;
   line-height: 3vh;
   padding: 3vh 10vh 3vh 5vh;
+  margin-bottom: 2vh;
 }
 
 .TrackList .list li {
@@ -213,6 +214,7 @@ code {
 
   .selector-list ul {
     font-size: 2vw;
+    align-items: flex-start;
   }
 
   .TrackList .display p {
@@ -244,5 +246,17 @@ code {
   }
   .About .bio {
     font-size: 2vw;
+  }
+}
+
+@media (min-aspect-ratio: 16/13) {
+  .About .bio {
+    display: none;
+  }
+}
+
+@media (min-aspect-ratio: 16/9) {
+  .About .symbols {
+    display: none;
   }
 }

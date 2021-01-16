@@ -1,6 +1,6 @@
 ## Were to find the music 
 
-Go to [live site](http:www.these-elements-combined.com)
+Go to [live site](https://these-elements-combined.com)
 
 ## How to run
 

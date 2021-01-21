@@ -20,6 +20,4 @@ npm run dev
 yarn dev
 ```
 
-Video files have not been included on Github
-
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.

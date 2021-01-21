@@ -11,7 +11,7 @@ import { Controls } from '../components/Controls.js';
 
 export default function App() {
 
-  const [currentAlbum, setCurrentAlbum] = useState("we-were-looking");
+  const [currentAlbum, setCurrentAlbum] = useState("the-solo-ep");
   const [currentTrack, setCurrentTrack] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
   const [isPlaying, setIsPlaying] = useState(isBrowser);
@@ -99,7 +99,7 @@ export default function App() {
       }
       { isReleased(currentTrack) ? 
         <VideoPlayer 
-          source={ songsArray[currentTrack].fileName } 
+          vimeoCode={ songsArray[currentTrack].vimeoCode } 
           next={() => next()}
           isPlaying={isPlaying}
           setIsLoaded={handleSetIsLoaded}

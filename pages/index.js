@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'; // TODO: Update readme
-import { isBrowser, isMobile } from 'react-device-detect';
 
 import { songsArray } from "../songs-array.js";
 
@@ -14,7 +13,7 @@ export default function App() {
   const [currentAlbum, setCurrentAlbum] = useState("the-solo-ep");
   const [currentTrack, setCurrentTrack] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [isPlaying, setIsPlaying] = useState(isBrowser);
+  const [isPlaying, setIsPlaying] = useState(false);
   const [selectorOpen, setSelectorOpen] = useState(false);
   const [aboutOpen, setAboutOpen] = useState(false);
 

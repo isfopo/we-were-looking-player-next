@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react'; // TODO: Update readme
+import React, { useState, useEffect } from 'react';
+import Head from 'next/head'
 
 import { songsArray } from "../songs-array.js";
 
@@ -82,51 +83,61 @@ export default function App() {
   }
 
   return ( 
-    <div className="App" >
-      { !aboutOpen &&
-        <AlbumSelector 
+    <>
+      <Head>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <meta charSet="utf-8" />
+        <title>These Elements Combined</title>
+        <meta name="These Elements Combined" content="Web player and site for These Elements Combined"></meta>
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+      </Head>
+      <div className="App" >
+        { !aboutOpen &&
+          <AlbumSelector 
           setSelectorOpen={ handleSetSelectorOpen }
           selectAlbum={ selectAlbum }
           iconColor={ songsArray[currentTrack].iconColor }
-        />
-      }
-      { !selectorOpen &&
-        <About
+          />
+        }
+        { !selectorOpen &&
+          <About
           setAboutOpen={handleSetAboutOpen}
           iconColor={ songsArray[currentTrack].iconColor }
-        />
-      }
-      { isReleased(currentTrack) ? 
-        <VideoPlayer 
+          />
+        }
+        { isReleased(currentTrack) ? 
+          <VideoPlayer 
           vimeoCode={ songsArray[currentTrack].vimeoCode } 
           next={() => next()}
           isPlaying={isPlaying}
           setIsLoaded={handleSetIsLoaded}
-        />
-      :
-        <h2 className={`unreleased ${songsArray[currentTrack].iconColor}`}>
-          this song will be released {
-            getReleaseDate(currentTrack).toUTCString().slice(0, 16).toLowerCase()
-          }
-        </h2>
-      }
-      <div className="bottom-bar">
-        <TrackList 
-          songsArray={ songsArray }
-          selectTrack={ selectTrack }
-          currentAlbum={ currentAlbum }
-          currentTrack={ currentTrack }
-        />
-        { isLoaded &&
-          <Controls 
+          />
+          :
+          <h2 className={`unreleased ${songsArray[currentTrack].iconColor}`}>
+            this song will be released {
+              getReleaseDate(currentTrack).toUTCString().slice(0, 16).toLowerCase()
+            }
+          </h2>
+        }
+        <div className="bottom-bar">
+          <TrackList 
+            songsArray={ songsArray }
+            selectTrack={ selectTrack }
+            currentAlbum={ currentAlbum }
+            currentTrack={ currentTrack }
+            />
+          { isLoaded &&
+            <Controls 
             isPlaying={ isPlaying }
             play={ play }
             pause={ pause }
             next={ next }
             back={ back }
-          />
-        }
+            />
+          }
+        </div>
       </div>
-    </div>
+    </>
   );
 }

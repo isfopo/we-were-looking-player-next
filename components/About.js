@@ -57,7 +57,7 @@ export const About = ({ setAboutOpen, iconColor}) => {
                         objectFit="contain"
                     />
                 </div>
-                <div className="links">
+                <div className="links"> //TODO: use next Link
                     <a href="mailto isaacpoolemusic@gmail.com">
                         <Image
                             className="icon"

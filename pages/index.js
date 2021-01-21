@@ -88,7 +88,7 @@ export default function App() {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <meta charSet="utf-8" />
         <title>These Elements Combined</title>
-        <meta name="These Elements Combined" content="Web player and site for These Elements Combined"></meta>
+        <meta name="description" content="Web player and site for 'These Elements Combined', a musical project by Isaac Poole. 'These Elements Combined' is a joining of the emotive focus of the lofi sound and the innovation inherit in a history of jazz to create a sound that is both simple and technical, amorphic and expressive."></meta>
         <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
       </Head>

@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import Link from 'next/link'
 import Image from 'next/image'
 
 export const About = ({ setAboutOpen, iconColor}) => {
@@ -57,7 +58,7 @@ export const About = ({ setAboutOpen, iconColor}) => {
                         objectFit="contain"
                     />
                 </div>
-                <div className="links"> //TODO: use next Link
+                <div className="links">
                     <a href="mailto isaacpoolemusic@gmail.com">
                         <Image
                             className="icon"

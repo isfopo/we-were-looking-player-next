@@ -95,23 +95,23 @@ export default function App() {
       <div className="App" >
         { !aboutOpen &&
           <AlbumSelector 
-          setSelectorOpen={ handleSetSelectorOpen }
-          selectAlbum={ selectAlbum }
-          iconColor={ songsArray[currentTrack].iconColor }
+            setSelectorOpen={ handleSetSelectorOpen }
+            selectAlbum={ selectAlbum }
+            iconColor={ songsArray[currentTrack].iconColor }
           />
         }
         { !selectorOpen &&
           <About
-          setAboutOpen={handleSetAboutOpen}
-          iconColor={ songsArray[currentTrack].iconColor }
+            setAboutOpen={handleSetAboutOpen}
+            iconColor={ songsArray[currentTrack].iconColor }
           />
         }
         { isReleased(currentTrack) ? 
           <VideoPlayer 
-          vimeoCode={ songsArray[currentTrack].vimeoCode } 
-          next={() => next()}
-          isPlaying={isPlaying}
-          setIsLoaded={handleSetIsLoaded}
+            vimeoCode={ songsArray[currentTrack].vimeoCode } 
+            next={() => next()}
+            isPlaying={isPlaying}
+            setIsLoaded={handleSetIsLoaded}
           />
           :
           <h2 className={`unreleased ${songsArray[currentTrack].iconColor}`}>
@@ -126,14 +126,14 @@ export default function App() {
             selectTrack={ selectTrack }
             currentAlbum={ currentAlbum }
             currentTrack={ currentTrack }
-            />
+          />
           { isLoaded &&
             <Controls 
-            isPlaying={ isPlaying }
-            play={ play }
-            pause={ pause }
-            next={ next }
-            back={ back }
+              isPlaying={ isPlaying }
+              play={ play }
+              pause={ pause }
+              next={ next }
+              back={ back }
             />
           }
         </div>

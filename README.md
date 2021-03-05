@@ -2,9 +2,19 @@
 
 Go to [live site](https://these-elements-combined.com)
 
-## How to run
+## How to run locally
 
-First, install dependencies:
+clone github repo:
+```bash
+git clone https://github.com/isfopo/we-were-looking-player-next.git
+```
+
+cd into project
+```bash
+cd we-were-looking-player-next
+```
+
+install dependencies:
 
 ```bash
 npm install
